@@ -4,9 +4,6 @@ import DegreePlan from './DegreePlan';
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import './LogoClass.css'
-
-
 function App() {
   function school() {
     var schoolID = document.getElementById("schoolList");
@@ -17,7 +14,7 @@ function App() {
   } 
   return (
     <div className="App">
-      <img className="LogoClass" src="Logo.JPG"/>
+      <img className="LogoClass" src= "Logo.PNG"> </img>
       <h1>School</h1>
       <select id="schoolList" onchange="school()">
         <option>University of St. Thomas</option>
