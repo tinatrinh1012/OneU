@@ -10,7 +10,8 @@ function App() {
   }
   function major() {
     var majorID = document.getElementById("majorList");
-  }
+    
+  } 
   return (
     <div className="App">
       <img class="LogoClass" src= "Logo.PNG"> </img>
