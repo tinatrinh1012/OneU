@@ -7,7 +7,7 @@ import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
 
 function App() {
-  
+
   function school() {
     var schoolID = document.getElementById("schoolList");
   }
@@ -26,6 +26,9 @@ function App() {
       <select id="majorList" onchange="major()">
         <option>Entrepreneurship</option>
       </select>
+
+      <br/>
+
       <BrowserRouter>
       
         <Link to='/degreeplan'>
