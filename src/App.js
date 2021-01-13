@@ -8,7 +8,15 @@ import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 function App() {
   return (
     <div className="App">
-      <img src= "Logo.PNG" width="150" height="100"> </img>
+      <img class="LogoClass" src= "Logo.PNG"> </img>
+      <h1>School</h1>
+      <select id="schoolList" onchange="school()">
+        <option>University of St. Thomas</option>
+      </select>
+      <h1>Major</h1>
+      <select id="majorList" onchange="major()">
+        <option>Entrepreneurship</option>
+      </select>
       <BrowserRouter>
       
         <Link to='/degreeplan'>
