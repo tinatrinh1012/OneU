@@ -5,7 +5,9 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
+
 function App() {
+  
   function school() {
     var schoolID = document.getElementById("schoolList");
   }
