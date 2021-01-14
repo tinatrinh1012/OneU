@@ -9,6 +9,8 @@ import Logo from './Logo.JPG'
 
 function App() {
 
+  
+
   function school() {
     var schoolID = document.getElementById("schoolList");
   }
