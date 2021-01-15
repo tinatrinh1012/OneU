@@ -5,7 +5,9 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
-import Logo from './Logo.JPG'
+import Logo from './Logo.JPG';
+import Component from './Component';
+
 
 function App() {
 
@@ -20,17 +22,8 @@ function App() {
   return (
     
     <div className="App">
-      
       <img className="LogoClass" src={Logo}/>
-      <h1>School</h1>
-      <select id="schoolList" onchange="school()">
-        <option>University of St. Thomas</option>
-      </select>
-      <h1>Major</h1>
-      <select id="majorList" onchange="major()">
-        <option>Entrepreneurship</option>
-      </select>
-
+      <Component/>
       <br/>
 
       <BrowserRouter>
