@@ -9,6 +9,7 @@ import Logo from './Logo.JPG'
 
 function App() {
 
+
   function school() {
     var schoolID = document.getElementById("schoolList");
   }
@@ -17,7 +18,9 @@ function App() {
     
   } 
   return (
+    
     <div className="App">
+      
       <img className="LogoClass" src={Logo}/>
       <h1>School</h1>
       <select id="schoolList" onchange="school()">
