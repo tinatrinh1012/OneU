@@ -1,14 +1,16 @@
 import React from 'react';
 import './Component.css';
+import Logo from './Logo.JPG';
 
 function Component() {
     return <div>
         <div class= "navigation">
-            <h1>School</h1>
+            <img className="smallLogo" src={Logo}/><p></p>
+            <div class="line"></div>
             <select id="schoolList" onchange="school()">
                 <option>University of St. Thomas</option>
             </select>
-            <h2>Major</h2>
+            <p></p>
             <select id="majorList" onchange="major()">
             <   option>Entrepreneurship</option>
             </select> 
