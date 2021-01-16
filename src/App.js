@@ -6,7 +6,9 @@ import {Link} from 'react-router-dom'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
 import Logo from './Logo.JPG';
-import Component from './Component';
+import Generator from './Generator';
+import ExploreDegrees from './ExploreDegrees';
+import CareerOptions from './CareerOptions';
 
 
 function App() {
@@ -25,15 +27,8 @@ function App() {
       <img className="LogoClass" src={Logo}/>
       <br/>
 
-      <BrowserRouter>
+      <Generator/>
 
-        <Component/>
-
-        <Route path='/degreeplan' component={DegreePlan} exact/>
-        
-
-      </BrowserRouter>
-      
     </div>
   );
 }
