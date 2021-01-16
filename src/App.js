@@ -30,6 +30,7 @@ function App() {
         <Component/>
 
         <Route path='/degreeplan' component={DegreePlan} exact/>
+        
 
       </BrowserRouter>
       
