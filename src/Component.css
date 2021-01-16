@@ -6,6 +6,7 @@
     right: 755px;
     margin-top: 10px;
     margin-bottom: 0px;
+    
 }
 .navigation {
     position: relative;
@@ -33,4 +34,11 @@
   }
   .schoolList {
       margin-top: 600px;
+  }
+
+  .try {
+      border: 1px solid;
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
   }

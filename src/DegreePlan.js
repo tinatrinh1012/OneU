@@ -33,7 +33,6 @@ function DegreePlan() {
     }) 
 
     return <div>
-        <h1>This is the Degree Plan component</h1>
         <p>{plans.major}</p>
         <br/>
 
