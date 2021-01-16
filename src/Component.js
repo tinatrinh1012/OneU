@@ -7,6 +7,7 @@ function Component() {
         <div class= "navigation">
             <img className="smallLogo" src={Logo}/><p></p>
             <div class="line"></div>
+            
             <select id="schoolList" onchange="school()">
                 <option>University of St. Thomas</option>
             </select>
