@@ -23,23 +23,15 @@ function App() {
     
     <div className="App">
       <img className="LogoClass" src={Logo}/>
-      <Component/>
       <br/>
 
       <BrowserRouter>
-      
-        <Link to='/degreeplan'>
-          <button className='btn btn-primary'>Create a degree plan</button>
-        </Link>
+
+        <Component/>
 
         <Route path='/degreeplan' component={DegreePlan} exact/>
 
-        
-      
       </BrowserRouter>
-
-      
-
       
     </div>
   );
