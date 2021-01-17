@@ -15,22 +15,27 @@ function Generator() {
         <div className= "navigation">
         
             <BrowserRouter>
-                <img className="smallLogo" src={Logo}/><p></p>
+                <img className="smallLogo" src={Logo}/>
 
                 <Link to="/">
-                    <button className="btn btn-primary">Explore Degrees</button>
+                    <button type= "button" className="btn btn-outline-secondary btn-sm">Explore Degrees</button>
                 </Link>
                 
                 <Link to="/careeroptions">
-                    <button className="btn btn-danger">Career Options</button>
+                    <button className="btn btn-outline-secondary btn-sm">Career Options</button>
                 </Link>
 
                 <div className="line"></div>
-
+                <Link to="/careeroptions/mentors">
+                    <button className='btn btn-primary'>Create a degree plan</button>
+                </Link>
                 <Route path='/' component={ExploreDegrees} exact/>
                 <Route path='/careeroptions' component={CareerOptions} exact/>
             </BrowserRouter>
         </div>
+        <BrowserRouter>
+            <Route path='/careeroptions/mentors' component={Mentors} exact/>
+        </BrowserRouter>
         
     </div>
 }

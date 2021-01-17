@@ -2,9 +2,7 @@
 .smallLogo {
     width: 50px;
     text-align: left;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    
+    margin-bottom: 0px;  
 }
 
 .navigation {
@@ -24,7 +22,6 @@
     height: 0;
     border: .5px solid;
     color: black;
-    margin-top: 30x;
     display:inline-block;
   }
 

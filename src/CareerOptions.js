@@ -2,7 +2,16 @@ import React from 'react'
 
 function CareerOptions() {
     return <div>
-        <h1>This is career options component</h1>
+        <select id="schoolList" onchange="school()">
+                <option>University of St. Thomas</option>
+            </select>
+            <p></p>
+            <select id="majorList" onchange="major()">
+                <option>Entrepreneurship</option>
+            </select> 
+
+            <br/>
+            <button className='btn btn-primary'>Create a degree plan</button>
     </div>
 }
 
