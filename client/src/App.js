@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import DegreePlan from './DegreePlan';
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
 import Logo from './Logo.JPG';
 import Generator from './Generator';
@@ -11,6 +11,7 @@ import ExploreDegrees from './ExploreDegrees';
 import CareerOptions from './CareerOptions';
 import Mentors from './Mentors';
 import Navigation from './Navigation';
+import './Navigation.css';
 
 
 function App() {
@@ -28,10 +29,13 @@ function App() {
     <div className="App">
       <Navigation/>
       <br/>
-      <BrowserRouter>
-          <Generator/>
-      </BrowserRouter>
-
+      <div className= "Body">
+        <BrowserRouter>
+        <Generator/>
+        </BrowserRouter>
+        <Mentors/>
+      </div>
+      
     </div>
   );
 }

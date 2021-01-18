@@ -13,7 +13,7 @@ import Mentors from './Mentors'
 function Generator() {
     return <div className = "navigation">
                 <Route path='/' component={ExploreDegrees} exact/>
-                <Route path='/careeroptions' component={CareerOptions} exact/>
+                <Route path='/CareerOptions' component={CareerOptions} exact/>
          
     </div>
 }

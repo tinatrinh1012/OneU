@@ -1,9 +1,12 @@
 .navbar {
     overflow: hidden;
-    background-color: rgb(238, 218, 218);
-    position: auto; 
+    position: fixed; 
     top: 0; 
-    width: 100; 
+    width: 100%; 
+    background: white;
+    border-bottom: lightslategrey;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }
   
 .navbar a {
@@ -15,7 +18,7 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 12px;
-    padding: 14px 16px;
+    padding: 11px 16px;
     text-decoration: none;
 }
   
@@ -24,6 +27,11 @@
     color: black;
 }
   
-.main {
-    margin-top: 30px; 
+.Body {
+    margin-top: 55px; 
+}  
+
+img {
+    width: 20px;
 }
+
