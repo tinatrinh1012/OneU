@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import DegreePlan from './DegreePlan';
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './LogoClass.css';
 import Logo from './Logo.JPG';
 import Generator from './Generator';
@@ -29,7 +29,7 @@ function App() {
       <Navigation/>
       <br/>
       <BrowserRouter>
-          <Generator/>
+         <Generator/>
       </BrowserRouter>
 
     </div>

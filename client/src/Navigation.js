@@ -7,11 +7,12 @@ import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function Navigation() {
     return <div>
-        <div className="navbar row">
+        <div className="navbar">
             <img className="LogoClass" src={Logo}/>
 
             <a href="/">Explore Degrees</a>
-            <a href="CareerOptions">Career Options</a>
+            <a href="/CareerOptions">Career Options</a>
+
         </div>
     </div>
 }
