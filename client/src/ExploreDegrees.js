@@ -9,6 +9,7 @@ function ExploreDegrees() {
             <h5>Explore Degrees</h5>
             <br/>
             <select id="schoolList" onchange="school()">
+                <option style="display:none" selected>Institution</option>
                 <option>University of St. Thomas</option>
             </select>
             <p></p>
