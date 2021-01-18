@@ -29,7 +29,8 @@ function App() {
       <Navigation/>
       <br/>
       <BrowserRouter>
-         <Generator/>
+          <Route path='/' component={ExploreDegrees} exact/>
+          <Route path='/CareerOptions' component={CareerOptions} exact/>
       </BrowserRouter>
 
     </div>

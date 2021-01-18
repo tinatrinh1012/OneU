@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import DegreePlan from './DegreePlan';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './Generator.css'
+import axios from 'axios'
 
 function ExploreDegrees() {
 
@@ -14,14 +15,18 @@ function ExploreDegrees() {
 
         event.preventDefault()
 
-        alert('This is create plan method')
-
         var filter = {
             school: school,
             major: major
         }
 
-        console.log(filter)
+        axios.post('/api/user/getplan', filter)
+        .then(res=>{
+            console.log(res)
+            
+        }).catch(err=>{
+            console.log(err)
+        })
 
     }
 
@@ -30,14 +35,14 @@ function ExploreDegrees() {
 
             <form onSubmit={createPlan}>
 
-                <select id="schoolList" value={school} onchange={(e)=>{setSchool(e.target.value)}}>
-                    <option>Select a school</option>
+                <select id="schoolList" onChange={()=>{setSchool(document.getElementById('schoolList').value)}}>
+                    <option value="">Select a school</option>
                     <option>University of St. Thomas</option>
                     <option>University of Minnesota</option>
                 </select>
                 <br/>
 
-                <select id="majorList" >
+                <select id="majorList" onChange={()=>{setMajor(document.getElementById('majorList').value)}}>
                     <option value="">Select a major</option>
                     <option>Entrepreneurship</option>
                     <option>Computer Science</option>
@@ -47,7 +52,6 @@ function ExploreDegrees() {
                 <input type="submit" value='Create a degree plan' className='btn btn-primary'/>
 
             </form>
-  
     </div>
 }
 
