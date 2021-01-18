@@ -31,6 +31,7 @@ function App() {
       <BrowserRouter>
           <Generator/>
       </BrowserRouter>
+
     </div>
   );
 }
