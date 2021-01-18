@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import DegreePlan from './DegreePlan';
+import {BrowserRouter, Route} from 'react-router-dom'
 
 function ExploreDegrees() {
     return <div>
@@ -12,7 +14,9 @@ function ExploreDegrees() {
             </select> 
 
             <br/>
+            
             <button className='btn btn-primary'>Create a degree plan</button>
+           
   
     </div>
 }

@@ -9,6 +9,7 @@ import Logo from './Logo.JPG';
 import Generator from './Generator';
 import ExploreDegrees from './ExploreDegrees';
 import CareerOptions from './CareerOptions';
+import Mentors from './Mentors'
 
 
 function App() {
@@ -26,9 +27,9 @@ function App() {
     <div className="App">
       <img className="LogoClass" src={Logo}/>
       <br/>
-
-      <Generator/>
-
+      <BrowserRouter>
+          <Generator/>
+      </BrowserRouter>
     </div>
   );
 }

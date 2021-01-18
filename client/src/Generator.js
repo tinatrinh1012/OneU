@@ -7,14 +7,12 @@ import DegreePlan from './DegreePlan';
 import {BrowserRouter, Route} from 'react-router-dom'
 import ExploreDegrees from './ExploreDegrees'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-
+import Mentors from './Mentors'
 
 
 function Generator() {
-    return <div>
-        <div className= "navigation">
-        
-            <BrowserRouter>
+    return <div className = "navigation">
+      
                 <img className="smallLogo" src={Logo}/>
 
                 <Link to="/">
@@ -24,13 +22,11 @@ function Generator() {
                 <Link to="/careeroptions">
                     <button className="btn btn-outline-secondary btn-sm">Career Options</button>
                 </Link>
+                <div className="line"></div>
 
-                <div className="line"></div> 
                 <Route path='/' component={ExploreDegrees} exact/>
                 <Route path='/careeroptions' component={CareerOptions} exact/>
-            </BrowserRouter>
-        </div>
-        
+         
     </div>
 }
 export default Generator 
