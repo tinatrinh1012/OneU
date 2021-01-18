@@ -32,7 +32,6 @@ function ExploreDegrees() {
 
     return <div>
             <h5>Explore Degrees</h5>
-
             <form onSubmit={createPlan}>
 
                 <select id="schoolList" onChange={()=>{setSchool(document.getElementById('schoolList').value)}}>
