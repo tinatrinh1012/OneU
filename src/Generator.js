@@ -25,17 +25,11 @@ function Generator() {
                     <button className="btn btn-outline-secondary btn-sm">Career Options</button>
                 </Link>
 
-                <div className="line"></div>
-                <Link to="/careeroptions/mentors">
-                    <button className='btn btn-primary'>Create a degree plan</button>
-                </Link>
+                <div className="line"></div> 
                 <Route path='/' component={ExploreDegrees} exact/>
                 <Route path='/careeroptions' component={CareerOptions} exact/>
             </BrowserRouter>
         </div>
-        <BrowserRouter>
-            <Route path='/careeroptions/mentors' component={Mentors} exact/>
-        </BrowserRouter>
         
     </div>
 }

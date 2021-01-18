@@ -11,7 +11,7 @@ function CareerOptions() {
             </select> 
 
             <br/>
-            <button className='btn btn-primary'>Create a degree plan</button>
+            <button className='btn btn-primary' >Explore Mentors</button>
     </div>
 }
 
