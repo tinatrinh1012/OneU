@@ -1,15 +1,58 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
-import DegreePlan from './DegreePlan';
-import {BrowserRouter, Route} from 'react-router-dom';
-import './Generator.css'
 import axios from 'axios'
+
 
 function ExploreDegrees() {
 
     const[school, setSchool] = useState('')
     const[major, setMajor] = useState('')
+    const[plan, setPlan] = useState([])
 
+    const degreeTable = plan.map((obj)=>{
+        return <div>
+            <h4>Degree Plan</h4>
+
+            <table className="table table-info">
+
+                <thead>
+                    <tr>
+                        <th>Fall</th>
+                        <th>J-term</th>
+                        <th>Spring</th>
+                        <th>Summer</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            {obj.freshman1.map((course)=>{
+                                return <p>{course}</p>
+                            })}
+                        </td>
+
+                        <td>
+                            {obj.freshmanJ.map((course)=>{
+                                return <p>{course}</p>
+                            })}
+                        </td>
+
+                        <td>
+                            {obj.freshman2.map((course)=>{
+                                return <p>{course}</p>
+                            })}
+                        </td>
+
+                        <td>
+                            {obj.freshmanS.map((course)=>{
+                                return <p>{course}</p>
+                            })}
+                        </td>
+                    </tr>
+                </tbody>                    
+            </table>
+        </div>
+    })
 
     function createPlan(event) {
 
@@ -22,13 +65,15 @@ function ExploreDegrees() {
 
         axios.post('/api/user/getplan', filter)
         .then(res=>{
-            console.log(res)
-            
+            console.log(res.data)
+            setPlan(res.data)
         }).catch(err=>{
             console.log(err)
         })
-
+        
     }
+
+    
 
     return <div>
             <h5>Explore Degrees</h5>
@@ -51,6 +96,12 @@ function ExploreDegrees() {
                 <input type="submit" value='Create a degree plan' className='btn btn-primary'/>
 
             </form>
+
+            <div id="degreetable">
+
+                {degreeTable}
+            </div>
+
     </div>
 }
 
