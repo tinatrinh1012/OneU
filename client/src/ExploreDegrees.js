@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import './DropdownFilter.css'
 
 
 function ExploreDegrees() {
@@ -10,7 +11,7 @@ function ExploreDegrees() {
 
     const degreeTable = plan.map((obj)=>{
         return <div>
-            <h4>Degree Plan</h4>
+            <h4>Degree Plan for {obj.major} major at {obj.school}</h4>
 
             <table className="table table-info">
 
@@ -77,31 +78,30 @@ function ExploreDegrees() {
 
     return <div>
             <h5>Explore Degrees</h5>
-            <form onSubmit={createPlan}>
+            <form onSubmit={createPlan}> 
 
                 <select id="schoolList" onChange={()=>{setSchool(document.getElementById('schoolList').value)}}>
-                    <option value="">Select a school</option>
+                    <option selected disabled>Select a school</option>
                     <option>University of St. Thomas</option>
                     <option>University of Minnesota</option>
                 </select>
                 <br/>
 
                 <select id="majorList" onChange={()=>{setMajor(document.getElementById('majorList').value)}}>
-                    <option value="">Select a major</option>
+                    <option selected disabled>Select a major</option>
                     <option>Entrepreneurship</option>
                     <option>Computer Science</option>
                 </select> 
                 <br/>
 
-                <input type="submit" value='Create a degree plan' className='btn btn-primary'/>
+                <input id="button" type="submit" value='Create a degree plan' className='btn btn-primary'/>
 
             </form>
-
-            <div id="degreetable">
-
+            
+            <div id="degreetable" style={{"margin-top": "50px"}}>
                 {degreeTable}
-            </div>
-
+            </div>    
+        
     </div>
 }
 

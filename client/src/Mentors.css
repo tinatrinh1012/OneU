@@ -1,8 +1,8 @@
 .Container {
     position: relative;
     width: 1200px;
-    height: 50px;
-    margin: 240px auto;
+    height: auto;
+    margin: 50px auto;
 }
 
 .Container .Box {
