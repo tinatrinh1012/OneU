@@ -1,0 +1,11 @@
+
+  @media (max-height:800px){
+	footer { position: static; }
+}
+footer {
+    padding: 10px 20px;
+    height: 20px;
+    width: 100%;
+    background-color: lightgray;
+}
+

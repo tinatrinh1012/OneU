@@ -9,15 +9,16 @@ function Mentors() {
             <div className="Box">
                 <div className = "Kyle">
                     <img className= "Profile" src="img_avatar.png" alt="Avatar"/>
-                    <div className="KyleContent">
+                    <h15>Kyle Andrews</h15>
+                </div>
+                <div className="Content">
                         <h11>Kyle Andrews- Sales Engineer @ Jamf</h11>
                         <br/>
                         <h12>2016 University of St. Thomas Graduate</h12>
                         <br/>
-                        <h13>Majors: Entrepreneurship & Econonmics, Minor: Biology</h13>
+                        <h13>Majors: Entrepreneurship and Econonmics, Minor: Biology</h13>
                         <br/>
                         <h14>#software #edtech #medicaldevice #startups</h14>
-                    </div>
                 </div>
             </div>
             <div className="Box">
