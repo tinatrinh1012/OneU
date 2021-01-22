@@ -16,7 +16,7 @@ function Mentors() {
                         <br/>
                         <h12>2016 University of St. Thomas Graduate</h12>
                         <br/>
-                        <h13>Majors: Entrepreneurship & Econonmics, Minor: Biology</h13>
+                        <h13>Majors: Entrepreneurship and Econonmics, Minor: Biology</h13>
                         <br/>
                         <h14>#software #edtech #medicaldevice #startups</h14>
                 </div>
