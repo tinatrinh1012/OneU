@@ -7,7 +7,6 @@ import ExploreDegrees from './ExploreDegrees';
 import CareerOptions from './CareerOptions';
 import Mentors from './Mentors';
 import Navigation from './Navigation';
-import Footer from './Footer';
 
 
 function App() {
