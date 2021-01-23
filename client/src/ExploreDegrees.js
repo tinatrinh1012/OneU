@@ -158,7 +158,7 @@ function ExploreDegrees() {
 
             </form>
             
-            <div id="degreetable" style={{"margin-top": "50px"}}>
+            <div id="degreetable" style={{"marginTop": "50px"}}>
                 {}
             </div>    
 

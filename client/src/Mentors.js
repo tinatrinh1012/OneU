@@ -1,31 +1,43 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './Mentors.css'
+import './Mentors.css';
+import Kyle_Andrews from './Kyle_Andrews.JPG';
+import Mike_Schmitt from './Mike_Schmitt.JPG';
 
 function Mentors() {
     return <div>
+        <h5>Mentors List</h5>
         <div className= "Container">
-            <h5>Mentors List</h5>
             <div className="Box">
-                <div className = "Kyle">
-                    <img className= "Profile" src="img_avatar.png" alt="Avatar"/>
-                    <h15>Kyle Andrews</h15>
+                <div className = "Cover">
+                    <div><img src={Kyle_Andrews} alt="Avatar"></img></div>
+                    <div><h15>Kyle Andrews</h15></div>
                 </div>
                 <div className="Content">
-                        <h11>Kyle Andrews- Sales Engineer @ Jamf</h11>
+                        <h12>Kyle Andrews</h12>
+                        <h11>Sales Engineer @ Jamf</h11>
+                        <h11>2016 University of St. Thomas Graduate</h11>
+                        <h11>Majors: Entrepreneurship and Econonmics, Minor: Biology</h11>
+                        <h11>#software #edtech #medicaldevice #startups</h11>
                         <br/>
-                        <h12>2016 University of St. Thomas Graduate</h12>
-                        <br/>
-                        <h13>Majors: Entrepreneurship and Econonmics, Minor: Biology</h13>
-                        <br/>
-                        <h14>#software #edtech #medicaldevice #startups</h14>
+                        <button type="button" class="btn btn-outline-light btn-lg">Connect</button>
                 </div>
             </div>
             <div className="Box">
-                
-            </div>
-            <div className="Box">
-                
+                <div className = "Cover">
+                    <img src={Mike_Schmitt} alt="Avatar"/>
+                    <br/>
+                    <h15>Mike Schmitt</h15>
+                </div>
+                <div className="Content">
+                        <h12>Mike Schmitt</h12>
+                        <h11>Regional Sales Manager @ Fetch</h11>
+                        <h11>2016 University of St. Thomas Graduate</h11>
+                        <h11>Majors: Entrepreneurship</h11>
+                        <h11>#sales #loT #multifamily #realestate</h11>
+                        <br/>
+                        <button type="button" class="btn btn-outline-light btn-lg">Connect</button>
+                </div>
             </div>
         </div>
     </div>
