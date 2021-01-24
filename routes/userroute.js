@@ -32,18 +32,19 @@ const yearSchema = new mongoose.Schema({
 const degreeSchema = new mongoose.Schema({
     school: String, 
     major: String, 
-    plan: {
-        freshman: yearSchema, 
-        sophomore: yearSchema, 
-        junior: yearSchema, 
-        senior: yearSchema
-    }
+    plan: [
+        [[String]],
+        [[String]],
+        [[String]],
+        [[String]]
+    ]
 });
 
 
 const CourseModel = mongoose.model("courses", courseSchema); 
 
-//const DegreeModel = mongoose.model("degreeplans", degreeSchema);
+const DegreeModel = mongoose.model("degreeplans", degreeSchema);
+
 
 /*
 const test = new CourseModel({
@@ -63,11 +64,13 @@ test.save(function(err) {
 })
 */
 
-var DegreePlan = mongoose.model('degreeplans', {school: String, major: String, freshman1: [String], freshmanJ: [String], freshman2: [String], freshmanS: [String]})
+//var DegreePlan = mongoose.model('degreeplans', {school: String, major: String, freshman1: [String], freshmanJ: [String], freshman2: [String], freshmanS: [String]})
+
+
 
 router.post('/getplan', function(req, res){
 
-    DegreePlan.find({
+    DegreeModel.find({
         school: req.body.school,
         major: req.body.major
     }, function(err, documents) {
