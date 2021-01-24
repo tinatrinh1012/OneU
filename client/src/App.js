@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import ExploreDegrees from './ExploreDegrees';
 import CareerOptions from './CareerOptions';
 import Navigation from './Navigation';
-import Footer from './Footer';
 
 
 function App() {

@@ -23,6 +23,7 @@ function ExploreDegrees() {
     const SUMMER = 3;
 
     var localPlan;
+    var planArray;
 
     function createPlan(event) {
 
@@ -40,19 +41,13 @@ function ExploreDegrees() {
             //setPlanObject(res.data[0])
             //console.log(res.data[0])
             //console.log(planObject.plan.length)
-            let planArray = res.data[0].plan;
+            
+            planArray = res.data[0].plan;
             console.log(planArray)
-            
-            localPlan = new Array(planArray.length);
-
-            console.log(planArray[0][0])
-
-            for (let year = FRESHMAN; year <= planArray.length; year++) {
-                localPlan[year] = planArray[year].slice(0);
-            }
-            
+            localPlan = [...planArray];
             console.log(localPlan);
             ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
+
         }).catch(err=>{
             console.log(err)
         })
@@ -60,19 +55,30 @@ function ExploreDegrees() {
     }
 
     var degreeTable = {
+
+
         
         classesRender: function() {
+            let termCount = 0;
+            let yearCount = 0;
+
             return <tbody>
                 {localPlan.map((year) => {
                     return <tr>
                         {year.map((term) => {
-                            return <td>
+                         
+                            return<td>
                                 {term.map((course) => {
                                     return <p>{course}</p>
                                 })}
+                                <button>Add</button>
+                
                             </td>
+                            
                         })}
+                       
                     </tr>
+                    
                 })}
             </tbody>
         },
@@ -209,7 +215,7 @@ function ExploreDegrees() {
             </form>
             
             <div id="degreetable" style={{"marginTop": "50px"}}>
-                
+                {}
             </div>    
 
             
