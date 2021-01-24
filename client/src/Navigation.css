@@ -13,7 +13,8 @@
     float: left;
     display: block;
     color: gray;
-    position: relative;
+    position:relative;
+    margin-left: 10px;
     text-align: center;
     border-width: 1px;
     border-style: solid;
