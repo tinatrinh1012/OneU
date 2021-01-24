@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import './DropdownFilter.css'
+import ReactDOM from 'react-dom';
 
 
 function ExploreDegrees() {
 
     const[school, setSchool] = useState('')
     const[major, setMajor] = useState('')
-    const[plan, setPlan] = useState([])
-    const[planObject, setPlanObject] = useState({})
+    //const[plan, setPlan] = useState([])
+    //const[planObject, setPlanObject] = useState({'': ''})
 
     const[courses, setCourses] = useState([])
 
@@ -21,8 +22,9 @@ function ExploreDegrees() {
     const SPRING = 2;
     const SUMMER = 3;
 
-    var localPlan = [[[]]];
-    
+    var localPlan;
+    var planArray;
+
     function createPlan(event) {
 
         event.preventDefault()
@@ -34,26 +36,78 @@ function ExploreDegrees() {
 
         axios.post('/api/user/getplan', filter)
         .then(res=>{
-            console.log(res.data)
-            setPlan(res.data)
-            setPlanObject(res.data[0])
-            console.log(res.data[0])
-            buildLocalPlan();
+            //console.log(res.data)
+            //setPlan(res.data)
+            //setPlanObject(res.data[0])
+            //console.log(res.data[0])
+            //console.log(planObject.plan.length)
+            
+            planArray = res.data[0].plan;
+            console.log(planArray)
+            localPlan = [...planArray];
+            console.log(localPlan);
+            ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
+
         }).catch(err=>{
             console.log(err)
         })
+
     }
 
-    
+    var degreeTable = {
 
-    function buildLocalPlan() {
-        for (let year=FRESHMAN; year <= SOPHOMORE; year++) {
-            for (let term=FALL; term <= SUMMER; term++) {
-                localPlan[year][term] = planObject.plan[year][term];
-            }
+
+        
+        classesRender: function() {
+            let termCount = 0;
+            let yearCount = 0;
+
+            return <tbody>
+                {localPlan.map((year) => {
+                    return <tr>
+                        {year.map((term) => {
+                         
+                            return<td>
+                                {term.map((course) => {
+                                    return <p>{course}</p>
+                                })}
+                                <button>Add</button>
+                
+                            </td>
+                            
+                        })}
+                       
+                    </tr>
+                    
+                })}
+            </tbody>
+        },
+
+        render: function() {
+            return <div>
+                <table className="table table-info table-bordered">
+                    
+                    <thead>
+                        <tr>
+                            <th>Fall</th>
+                            <th>J-term</th>
+                            <th>Spring</th>
+                            <th>Summer</th>
+                        </tr>
+                    </thead>
+
+                    {this.classesRender()}
+
+                </table>
+                <div>
+                    <h1>Test Add Course</h1>
+                    <button onClick={addCourse}>Add</button>
+                </div>
+            </div>
         }
     }
     
+    /*
     var planVariable = {
         major: {major}, 
 
@@ -67,7 +121,9 @@ function ExploreDegrees() {
             </div>
         }
     }
+    */
 
+    /*
     const degreeTable = plan.map((obj)=>{
         return <div>
             <h4>Degree Plan for {obj.major} major at {obj.school}</h4>
@@ -127,13 +183,13 @@ function ExploreDegrees() {
             </table>
         </div>
     })
+    */
 
-    
-    
-
-
-    
-
+    function addCourse() {
+        localPlan[FRESHMAN][FALL].push("test course")
+        console.log(localPlan)
+        ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
+    }
     
 
     return <div>
@@ -141,14 +197,14 @@ function ExploreDegrees() {
             <form onSubmit={createPlan}> 
 
                 <select id="schoolList" onChange={()=>{setSchool(document.getElementById('schoolList').value)}}>
-                    <option selected disabled>Select a school</option>
+                    <option defaultValue>Select a school</option>
                     <option>University of St. Thomas</option>
                     <option>University of Minnesota</option>
                 </select>
                 <br/>
 
                 <select id="majorList" onChange={()=>{setMajor(document.getElementById('majorList').value)}}>
-                    <option selected disabled>Select a major</option>
+                    <option defaultValue>Select a major</option>
                     <option>Entrepreneurship</option>
                     <option>Computer Science</option>
                 </select> 
@@ -161,6 +217,8 @@ function ExploreDegrees() {
             <div id="degreetable" style={{"marginTop": "50px"}}>
                 {}
             </div>    
+
+            
 
     </div>
 }
