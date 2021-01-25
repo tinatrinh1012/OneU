@@ -55,24 +55,19 @@ function ExploreDegrees() {
     }
 
     var degreeTable = {
-
-
-        
         classesRender: function() {
-            let termCount = 0;
-            let yearCount = 0;
 
             return <tbody>
-                {localPlan.map((year) => {
+                {localPlan.map((year, yearCount) => {
                     return <tr>
-                        {year.map((term) => {
+
+                        {year.map((term, termCount) => {
                          
-                            return<td>
+                            return <td>
                                 {term.map((course) => {
                                     return <p>{course}</p>
                                 })}
-                                <button>Add</button>
-                
+                                <button onClick={()=>addCourse(yearCount, termCount)} className="btn btn-success">Add</button>
                             </td>
                             
                         })}
@@ -101,28 +96,12 @@ function ExploreDegrees() {
                 </table>
                 <div>
                     <h1>Test Add Course</h1>
-                    <button onClick={addCourse}>Add</button>
+                    <button>Add</button>
                 </div>
             </div>
         }
     }
     
-    /*
-    var planVariable = {
-        major: {major}, 
-
-        testFunction: function() {
-            return <div>
-                <h4>This is html returned by test function</h4>
-                <div>
-                    <p>This is freshman fall schedule </p>
-
-                </div>
-            </div>
-        }
-    }
-    */
-
     /*
     const degreeTable = plan.map((obj)=>{
         return <div>
@@ -185,8 +164,8 @@ function ExploreDegrees() {
     })
     */
 
-    function addCourse() {
-        localPlan[FRESHMAN][FALL].push("test course")
+    function addCourse(year, term) {
+        localPlan[year][term].push("test course")
         console.log(localPlan)
         ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
     }
