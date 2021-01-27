@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import './DropdownFilter.css'
 import ReactDOM from 'react-dom'
 import Mentors from './Mentors'
@@ -18,13 +17,13 @@ function CareerOptions() {
 
         <form onSubmit={getMentors}>
             <select id="schoolList">
-                <option selected disabled>Select a school</option>
+                <option defaultValue>Select a school</option>
                 <option>University of St. Thomas</option>
             </select>
             <br/>
 
-            <select id="majorList" onchange="major()">
-                <option selected disabled>Select a major</option>
+            <select id="majorList">
+                <option defaultValue>Select a major</option>
                 <option>Entrepreneurship</option>
             </select> 
             <br/>

@@ -111,88 +111,37 @@ router.post('/getvalidationcode', function(req, res) {
 })
 
 router.post('/validateclass', function(req, res) {
-    /*
-    MajorRequirement.find({
-        major: req.body.major,
-        required: { $elemMatch: { $eq: req.body.courseAcronym}}
-    }, function(err, documents) {
-        if (err) {
-            console.log("Error major requirement")
-        } else {
-            if (documents.length == 0) {
-                console.log("length = 0")
-                /*
-                CoreRequirement.find({
-                    required: { $elemMatch: { $eq: req.body.courseAcronym}}
-            
-                }, function(err, documents) {
-                    if (err) {
-                        console.log("Validate general requirement went wrong")
-                    } else {
-                        if (documents.length == 0) {
-                            console.log("Couldn't find general requirement, look for general elective")
-                            
-                            // look for elective core requirement
-                            CoreRequirement.find({
-                                elective: { $elemMatch: { $eq: req.body.courseAcronym}}
-                            }, function (err, documents) {
-                                if (err) {
-                                    console.log("Validate general elective went wrong")
-                                } else {
-                                    if (documents.length == 0) {
-                                        console.log("Cound't find general elective")
-                                    } else {
-                                        console.log("This is elective general")
-                                        res.send("yellow")
-                                    }
-                                }
-                            })
-            
-                        } else {
-                            console.log("This is a required course")
-                            res.send("red");
-                        }
-                    }
-                })
-                */
-                /*
-            } else {
-                console.log(documents)
-                res.send("DarkMagenta")
-            }
-        }
-    })
-    */
-   
+    console.log("Looking for required " + req.body.courseAcronym)
     
     CoreRequirement.find({
         required: { $elemMatch: { $eq: req.body.courseAcronym}}
 
     }, function(err, documents) {
         if (err) {
-            console.log("Validate general requirement went wrong")
+            console.log("Something wrong with " + req.body.courseAcronym)
         } else {
             if (documents.length == 0) {
-                console.log("Couldn't find general requirement, look for general elective")
                 
-                // look for elective core requirement
+                console.log("Looking for elective " + req.body.courseAcronym)
+
                 CoreRequirement.find({
                     elective: { $elemMatch: { $eq: req.body.courseAcronym}}
+
                 }, function (err, documents) {
                     if (err) {
-                        console.log("Validate general elective went wrong")
+                        //console.log("Validate general elective went wrong")
                     } else {
                         if (documents.length == 0) {
-                            console.log("Cound't find general elective")
+                            //console.log("Cound't find general elective")
                         } else {
-                            console.log("This is elective general")
+                            console.log("Found elective " + req.body.courseAcronym)
                             res.send("Aquamarine")
                         }
                     }
                 })
 
             } else {
-                console.log("This is a required course")
+                console.log("Found required general course " + req.body.courseAcronym)
                 res.send("yellow");
             }
         }
