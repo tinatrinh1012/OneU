@@ -11,6 +11,22 @@ function Mentors() {
     const togglePopup = () => {
     setIsOpen(!isOpen);
     }
+
+    //add code
+    var todo = document.querySelector( '#todolist' ),
+      form = document.querySelector( 'form' ),
+      field = document.querySelector( '#newitem' );
+    
+    form.addEventListener( 'submit', function( ev ) {
+    var text = field.value;
+    if ( text !== '' ) {
+      todo.innerHTML += '<li>' + text + ' <button onclick="Delete(this);">Delete</button> </li>';
+      field.value = '';
+      field.focus();
+    }
+    ev.preventDefault();
+    }, false);
+
     return <div>
         <h5>Mentors List</h5>
         <div className= "Container">
@@ -72,6 +88,19 @@ function Mentors() {
             </>}
             handleClose={togglePopup}
         />}
+        //addition code 
+        <section>
+   
+            <form action="#" method="post">
+            <div>
+                <label for="newitem">Add item</label>
+                <input type="text" name="newitem" id="newitem" 
+                    placeholder="new item" />
+                <input type="submit" value="Add" />
+            </div>
+            </form>
+            <ul id="todolist"></ul>
+        </section>
     </div>
 }
 export default Mentors
