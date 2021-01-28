@@ -6,27 +6,16 @@ import Popup from './Popup';
 import { useState } from 'react';
 
 function Mentors() {
+    Boolean = false;
     const [isOpen, setIsOpen] = useState(false);
  
     const togglePopup = () => {
     setIsOpen(!isOpen);
     }
-
-    //add code
-    var todo = document.querySelector( '#todolist' ),
-      form = document.querySelector( 'form' ),
-      field = document.querySelector( '#newitem' );
-    
-    form.addEventListener( 'submit', function( ev ) {
-    var text = field.value;
-    if ( text !== '' ) {
-      todo.innerHTML += '<li>' + text + ' <button onclick="Delete(this);">Delete</button> </li>';
-      field.value = '';
-      field.focus();
+    const submit = () => {
+        setIsOpen(!isOpen);
+        Boolean = true;
     }
-    ev.preventDefault();
-    }, false);
-
     return <div>
         <h5>Mentors List</h5>
         <div className= "Container">
@@ -42,6 +31,7 @@ function Mentors() {
                         <h11>Majors: Entrepreneurship and Econonmics, Minor: Biology</h11>
                         <h11>#software #edtech #medicaldevice #startups</h11>
                         <br/>
+
                         <input
                             type="button"
                             class="btn btn-outline-light btn-lg"
@@ -75,32 +65,39 @@ function Mentors() {
         {isOpen && <Popup
             content={<>
                 <form action="action_page.php">
-
-                <label for="fname">First Name  </label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
+                <h1>Connect With A Mentor Form</h1>
                 <br/>
-                <label for="lname">Last Name  </label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
+                <select className = "dropdown" class="form-control" id="Mentors">
+                    <option defaultValue>Pick a mentor</option>
+                    <option>Kyle Andrews</option>
+                    <option>Mike Schmitt</option>
+                </select>
+                <label for="fname">What is your name?</label>
                 <br/>
-                <input type="submit" value="Submit"/>
-
+                <input type="Name" class="form-control" id="fname" name="firstname" placeholder="Ex. John Doe"/>
+                <label for="lname">What is your email?</label>
+                <br/>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
+                <label for="lname">What are you studying?</label>
+                <input type="Major" class="form-control" id="exampleFormControlInput1" placeholder="Ex. Entrepreneurship"/>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Why do you want to connect?</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <input type="submit" value="Submit" 
+                onClick= {submit}/>
                 </form>
             </>}
             handleClose={togglePopup}
         />}
-        //addition code 
-        <section>
-   
-            <form action="#" method="post">
-            <div>
-                <label for="newitem">Add item</label>
-                <input type="text" name="newitem" id="newitem" 
-                    placeholder="new item" />
-                <input type="submit" value="Add" />
-            </div>
-            </form>
-            <ul id="todolist"></ul>
-        </section>
+        {!isOpen && Boolean == true && <Popup
+            content={<>
+                <form action="action_page.php">
+                <h1>Thank you!</h1>
+                </form>
+            </>}
+            handleClose={togglePopup}
+        />}
     </div>
 }
 export default Mentors
