@@ -84,8 +84,8 @@ function Mentors() {
                     <label for="exampleFormControlTextarea1">Why do you want to connect?</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <input type="submit" value="Submit" 
-                onClick= {submit}/>
+                <button type="button" class="btn btn-outline-primary" value="Submit" 
+                onClick= {submit}>Submit</button>
                 </form>
             </>}
             handleClose={togglePopup}
