@@ -1,7 +1,7 @@
 import './App.css';
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route} from 'react-router-dom'
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import ExploreDegrees from './ExploreDegrees';
 import CareerOptions from './CareerOptions';
 import Navigation from './Navigation';

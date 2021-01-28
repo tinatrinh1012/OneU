@@ -2,16 +2,13 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import './DropdownFilter.css'
 import ReactDOM from 'react-dom';
+import './ExploreDegrees.css'
 
 
 function ExploreDegrees() {
 
     const[school, setSchool] = useState('')
     const[major, setMajor] = useState('')
-    //const[plan, setPlan] = useState([])
-    //const[planObject, setPlanObject] = useState({'': ''})
-
-    const[courses, setCourses] = useState([])
 
     const FRESHMAN = 0;
     const SOPHOMORE = 1;
@@ -36,17 +33,14 @@ function ExploreDegrees() {
 
         axios.post('/api/user/getplan', filter)
         .then(res=>{
-            //console.log(res.data)
-            //setPlan(res.data)
-            //setPlanObject(res.data[0])
-            //console.log(res.data[0])
-            //console.log(planObject.plan.length)
             
             planArray = res.data[0].plan;
-            console.log(planArray)
+            //console.log(planArray)
             localPlan = [...planArray];
             console.log(localPlan);
             ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
+            //document.getElementById("fye").checked = true
+            //validateAll()
 
         }).catch(err=>{
             console.log(err)
@@ -55,37 +49,50 @@ function ExploreDegrees() {
     }
 
     var degreeTable = {
-
-
-        
         classesRender: function() {
-            let termCount = 0;
-            let yearCount = 0;
-
             return <tbody>
-                {localPlan.map((year) => {
-                    return <tr>
-                        {year.map((term) => {
-                         
-                            return<td>
-                                {term.map((course) => {
-                                    return <p>{course}</p>
+                {localPlan.map((year, yearCount) => {
+                    return <tr key={yearCount}>
+
+                        {year.map((term, termCount) => {
+                            return <td key={termCount}>
+
+                                {term.map((course, courseCount) => {
+                                                                     
+                                    return <div key={courseCount}>
+                                        <p id={course} className="courseName" onClick={()=>removeCourse(yearCount, termCount, courseCount)}>{course}</p>
+                                    </div>
+                                     
                                 })}
-                                <button>Add</button>
-                
+
+                                <button onClick={()=>addCourse(yearCount, termCount)} className="btn btn-success">Add</button>
+                        
                             </td>
-                            
                         })}
-                       
+
                     </tr>
-                    
                 })}
             </tbody>
         },
 
         render: function() {
             return <div>
-                <table className="table table-info table-bordered">
+
+                <div id="checkbox">
+                    <input type="checkbox" id="fye" name="fye"/>
+                    <label htmlFor="fye"> First-Year Experience </label> <br/>
+
+                    <input id="literature" type="checkbox" name="literature"/>
+                    <label htmlFor="literature"> Literature and Writing </label> <br/>
+
+                    <input id="history" type="checkbox" name="history"/>
+                    <label htmlFor="history"> Historical Studies </label> <br/>
+
+                    <button className="btn btn-primary" onClick={validateAll}>Validate Plan</button> <br/> <br/>
+
+                </div>
+
+                <table className="table table-dark table-bordered">
                     
                     <thead>
                         <tr>
@@ -97,97 +104,110 @@ function ExploreDegrees() {
                     </thead>
 
                     {this.classesRender()}
-
                 </table>
-                <div>
-                    <h1>Test Add Course</h1>
-                    <button onClick={addCourse}>Add</button>
-                </div>
             </div>
+        }, 
+
+        validate: function(acronym) {
+
+            var property = {
+                courseAcronym: acronym,
+                major: major
+            }
+            
+            axios.post('/api/user/validateclass', property)
+            .then(res=>{
+                //response: color value
+                document.getElementById(acronym).style.color = res.data;
+            }).catch(err=>{
+                console.log(err)
+            })
         }
+       
     }
-    
-    /*
-    var planVariable = {
-        major: {major}, 
 
-        testFunction: function() {
-            return <div>
-                <h4>This is html returned by test function</h4>
-                <div>
-                    <p>This is freshman fall schedule </p>
 
-                </div>
-            </div>
+    //var validation = {
+
+        function validateFYE() {
+            var counter = 2;
+            for (let term = FALL; term <= SUMMER; term++) {
+                for (let course = 0; course < localPlan[FRESHMAN][term].length; course++) {
+                    if (localPlan[FRESHMAN][term][course] == "FYEX 100") {
+                        counter = counter - 1;
+                        document.getElementById("FYEX 100").style.color = "yellow"
+                    }
+                    if (localPlan[FRESHMAN][term][course] == "FYEX 150") {
+                        counter = counter - 1;
+                        document.getElementById("FYEX 150").style.color = "yellow"
+                    }
+                    if (counter == 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-    }
-    */
 
-    /*
-    const degreeTable = plan.map((obj)=>{
-        return <div>
-            <h4>Degree Plan for {obj.major} major at {obj.school}</h4>
+        function validateLiterature() {
+            for (let year = FRESHMAN; year < localPlan.length; year++) {
+                for (let term = FALL; term <= localPlan[year].length; term++) {
+                    // fix bug: check if length > 0 since jterm and summer can have 0 class => empty array
+                    for (let course = 0; course < localPlan[year][term].length; course++) {
+                        if (localPlan[year][term][course] == "ENGL 121") {
+                            document.getElementById("ENGL 121").style.color = "Aquamarine"
+                            return true;
+                        } else if (localPlan[year][term][course] == "ENGL 190") {
+                            document.getElementById("ENGL 190").style.color = "Aquamarine"
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
-            <div>Test function return {planVariable.testFunction()}</div>
+        function validateHistory() {
+            var hist = ["HIST 111", "HIST 112", "HIST 113", "HIST 114", "HIST 115", "HIST 117", "HIST 118", "HIST 119"];
+            for (let year = FRESHMAN; year < localPlan.length; year++) {
+                for (let term = FALL; term <= localPlan[year].length; term++) {
+                    for (let course = 0; course < localPlan[year][term].length; course++) {
+                        if (hist.includes(localPlan[year][term][course])) {
+                            document.getElementById(localPlan[year][term][course]).style.color = "Aquamarine"
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false
+        }
 
-            <table className="table table-info table-bordered">
+        
+        function validateAll() {
+            // this function use validate function for all requirements
+            if (validateFYE()) {
+                document.getElementById("fye").checked = true;
+            }
+            if (validateLiterature()) {
+                document.getElementById("literature").checked = true;
+            }
+            if(validateHistory()) {
+                document.getElementById("history").checked = true;
+            }
+        }
+        
+    //}
 
-                <thead>
-                    <tr>
-                        <th>Fall</th>
-                        <th>J-term</th>
-                        <th>Spring</th>
-                        <th>Summer</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>
-                            {obj.freshman1.map((course)=>{
-                                return <p>{course}</p>
-                            })}
-                        </td>
-
-                        <td>
-                            {obj.freshmanJ.map((course)=>{
-                                return <p>{course}</p>
-                            })}
-                        </td>
-
-                        <td>
-                            {obj.freshman2.map((course)=>{
-                                return <p>{course}</p>
-                            })}
-                        </td>
-
-                        <td>
-                            {obj.freshmanS.map((course)=>{
-                                return <p>{course}</p>
-                            })}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Sophomore row</td>
-                    </tr>
-
-                    <tr>
-                        <td>Junior row</td>
-                    </tr>
-
-                    <tr>
-                        <td>Senior row</td>
-                    </tr>
-                </tbody>                    
-            </table>
-        </div>
-    })
-    */
-
-    function addCourse() {
-        localPlan[FRESHMAN][FALL].push("test course")
+    function addCourse(year, term) {
+        localPlan[year][term].push("HIST 115");
         console.log(localPlan)
+        ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
+        //validate here again if want to do auto
+    }
+
+    function removeCourse(year, term, course) {
+        // bug: when remove the last element, lose the array of that term => need to maintain the array
+        localPlan[year][term].splice(course, 1);
         ReactDOM.render(degreeTable.render(), document.getElementById("degreetable"));
     }
     
@@ -215,10 +235,9 @@ function ExploreDegrees() {
             </form>
             
             <div id="degreetable" style={{"marginTop": "50px"}}>
-                {}
             </div>    
 
-            
+                   
 
     </div>
 }

@@ -22,13 +22,6 @@ const courseSchema = new mongoose.Schema({
     numberCredits: Number
 });
 
-const yearSchema = new mongoose.Schema({
-    fall: [String],
-    jterm: [String], 
-    spring: [String],
-    summer: [String]
-})
-
 const degreeSchema = new mongoose.Schema({
     school: String, 
     major: String, 
@@ -40,10 +33,24 @@ const degreeSchema = new mongoose.Schema({
     ]
 });
 
+const coreRequirementsSchema = new mongoose.Schema({
+    required: [String], 
+    elective: [String]
+})
+
+const majorRequirementsSchema = new mongoose.Schema({
+    major: String,
+    required: [String]
+})
+
 
 const CourseModel = mongoose.model("courses", courseSchema); 
 
 const DegreeModel = mongoose.model("degreeplans", degreeSchema);
+
+const CoreRequirement = mongoose.model('corerequirements', coreRequirementsSchema);
+
+const MajorRequirement = mongoose.model('majorrequirements', majorRequirementsSchema);
 
 
 /*
@@ -86,6 +93,63 @@ router.post('/getplan', function(req, res){
     })
 })
 
+router.post('/getvalidationcode', function(req, res) {
+    CourseModel.find({
+        acronym: req.body.courseAcronym    
+    }, function(err, documents) {
+        if (err) {
+            console.log("Get validation code failed")
+        } else {
+            if (documents.length == 0) {
+                console.log("Couldn't find the course")
+            } else {
+                console.log("Found the course!")
+                res.send(documents[0].validationCode)
+            }
+        }
+    })
+})
+
+router.post('/validateclass', function(req, res) {
+    console.log("Looking for required " + req.body.courseAcronym)
+    
+    CoreRequirement.find({
+        required: { $elemMatch: { $eq: req.body.courseAcronym}}
+
+    }, function(err, documents) {
+        if (err) {
+            console.log("Something wrong with " + req.body.courseAcronym)
+        } else {
+            if (documents.length == 0) {
+                
+                console.log("Looking for elective " + req.body.courseAcronym)
+
+                CoreRequirement.find({
+                    elective: { $elemMatch: { $eq: req.body.courseAcronym}}
+
+                }, function (err, documents) {
+                    if (err) {
+                        //console.log("Validate general elective went wrong")
+                    } else {
+                        if (documents.length == 0) {
+                            //console.log("Cound't find general elective")
+                        } else {
+                            console.log("Found elective " + req.body.courseAcronym)
+                            res.send("Aquamarine")
+                        }
+                    }
+                })
+
+            } else {
+                console.log("Found required general course " + req.body.courseAcronym)
+                res.send("yellow");
+            }
+        }
+    })
+    
+    
+    
+})
 
 
 module.exports = router 

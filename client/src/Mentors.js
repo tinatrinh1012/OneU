@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './Mentors.css';
 import Kyle_Andrews from './Kyle_Andrews.JPG';
 import Mike_Schmitt from './Mike_Schmitt.JPG';
